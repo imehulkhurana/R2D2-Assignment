@@ -1,0 +1,412 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: sans-serif;
+			}
+			
+			header {
+				background: linear-gradient(rgba(0,0,100,0.5), rgba(0,0,100,0.5)),url(bg4.jpg);
+				background-position: center;
+				background-size: cover;
+				height: 100vh;
+			}
+			
+			nav {
+				position: fixed;
+				width: 100%;
+				line-height: 30px;
+			}
+			
+			nav ul {
+				float: left;
+				margin: 0;
+				padding-right: 42px;
+			}
+			
+			nav ul li {
+				display: inline-block;
+				padding: 16px 32px;
+			}
+			
+			nav ul li a{
+				text-decoration: none;
+				color: #fff;
+				font-size: 16px;
+			}
+			
+			.logo{
+				height: 48px;
+				float: left;
+				margin-left: 150px;
+				margin-right: 0px;
+				margin-top: 7px;
+			}
+			
+			
+			.modal {
+				width: 500px;
+				height: 200px;
+				overflow: hidden;
+				background: #34495e;
+				position: fixed;
+				top: -300px;
+				left: 500px;
+				transition: 1s;
+				z-index: 1;
+			}
+			
+			
+			.modal img {
+				float: left;
+			}
+			
+			.content {
+				width: 300px;
+				padding: 10px;
+				box-sizing: border-box;
+				float: left;
+				color: white;
+			}
+			
+			.content h1{
+				font-size: 20px;
+			}
+			
+			.content a{
+				font-size: 15px;
+			}
+			
+			.content a{
+				display: block;
+				background: #e74c3c;
+				padding: 10px 30px;
+				border-radius: 8px;
+				color: white;
+				text-decoration: none;
+			}
+			
+			.hide{
+				position: absolute;
+				z-index: 9999;
+				top: 14px;
+				right: 14px;
+				font-size: 20px;
+				color: #333;
+				opacity: 0.7;
+				transition: 0.3s;
+				cursor: pointer;
+			}
+			
+			.hide:hover {
+				transform: rotate(90deg);
+				opacity: 1;
+			}
+			
+			.btn {
+				color: #e74c3c;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				border-radius: 8px;
+				border: 2px solid;
+				padding: 10px 20px;
+				text-decoration: none;
+			}
+			
+			input {
+				width: 80%;
+				height: 5vh;
+				margin-left: 50px;
+			}
+			
+			#break {
+				padding-top: 10vh;
+			}
+			
+			.dropbtn {
+			  background-color: inherit;
+			  color: white;
+			  padding: 16px;
+			  font-size: 16px;
+			  border: none;
+			  cursor: pointer;
+			}
+
+			.dropdown {
+			  position: relative;
+			  display: inline-block;
+			}
+
+			.dropdown-content {
+			  display: none;
+			  position: absolute;
+			  background-color: #f9f9f9;
+			  min-width: 200px;
+			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			  z-index: 1;
+			}
+
+			.dropdown-content a {
+			  color: black;
+			  padding: 12px 16px;
+			  text-decoration: none;
+			  display: block;
+			  z-index:1;
+			}
+
+			.dropdown-content a:hover {background-color: inherit}
+
+			.dropdown:hover .dropdown-content {
+			  display: block;
+			}
+
+			.dropdown:hover .dropbtn {
+			  background-color: inherit;
+			}
+			
+			.gallery {
+				margin-top: 50px;
+				background-color: inherit;
+				height: 50vh;
+			}
+			
+			.gallery .flip-card {
+			  background-color: transparent;
+			  width: 1300px;
+			  height: 360px;
+			  perspective: 1000px;
+			  float: left;
+			  margin-left: 30px;
+			  z-index: 0;
+			}
+			
+			.gallery .flip-card-inner {
+			  position: relative;
+			  width: 1300px;
+			  height: 360px;
+			  text-align: center;
+			  transition: transform 0.6s;
+			  transform-style: preserve-3d;
+			  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			}
+
+			.gallery .flip-card-front, .gallery .flip-card-back {
+			  position: absolute;
+			  width: 1300px;
+			  height: 360px;
+			  backface-visibility: hidden;
+			}
+			
+			.photos {
+				margin-top: 10px;
+				background-color: inherit;
+				width: 1360px;
+				height: 25vh;
+				margin-bottom: 0;
+				margin-right: 0px;
+				margin-left: 0px;
+				padding-right: 0;
+				padding-bottom: 0;
+			}
+			
+			.flip-card {
+			  background-color: transparent;
+			  width: 300px;
+			  height: 180px;
+			  perspective: 1000px;
+			  float: left;
+			  margin-left: 30px;
+			}
+
+			.flip-card-inner {
+			  position: relative;
+			  width: 300px;
+			  height: 180px;
+			  text-align: center;
+			  transition: transform 0.6s;
+			  transform-style: preserve-3d;
+			  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			}
+
+			.flip-card:hover .flip-card-inner {
+			  transform: rotateY(180deg);
+			}
+
+			.flip-card-front, .flip-card-back {
+			  position: absolute;
+			  width: 300px;
+			  height: 180px;
+			  backface-visibility: hidden;
+			}
+
+			.flip-card-front {
+			  background-color: #bbb;
+			  color: black;
+			}
+
+			.flip-card-back {
+			  background-color: inherit;
+			  color: white;
+			  transform: rotateY(180deg);
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				
+				<img class="logo" src="whitelogo.png" />
+				
+				<div class="menu">
+				
+					<ul>
+						<li><a href="#">DISCOVER</a></li>
+						<div class="dropdown">
+						  <button class="dropbtn fas fa-caret-down">MOVIE</button>
+						  <div class="dropdown-content">
+						  <a onclick="showmodal()" href="#">Shahzam</a>
+						  <a href="#">Avengers- Infinity War</a>
+						  <a href="#">Avengers- EndGame</a>
+						  
+						  </div>
+						</div>
+						<li><a href="#">TV SHOWS</a></li>
+						<li><a href="#">PEOPLE</a></li>
+					</ul>
+					<ul>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#">LOGIN</a></li>
+						<li><a href="#">SIGN UP</a></li>
+					</ul>
+					
+				</div>
+			</nav>
+		<section id="break">	
+			<input type="text" name="srch" id="srch" placeholder="Search here!" list="datalist1"  />
+			<datalist id="datalist1">
+				<option value="Shahzam">
+				<option value="Detective Pikachu">
+				<option value="Avengers EndGame">
+				<option value="Spider Man : Far From Home">
+				<option value="The Hulk">
+				<option value="The Avengers">
+				<option value="Thor">
+				<option value="Avengers Infinity War">
+			</datalist>
+		</section>
+		
+		<div class="modal" id="modal1">
+			<img src="shah.jpg" alt="" />
+			<div class="content">
+				<h1>Shazam!
+						<br>March 23, 2019</h1>
+				<p>A boy is given the ability to become an adult superhero in times of need with a single magic word.</p>
+				<a href="#">Read More</a>
+			</div>
+			
+			<div onclick="hidemodal()" class="hide fas fa-times"></div>
+			
+		</div>
+		
+		<section class="gallery">
+			<div class="flip-card">
+			  <div class="flip-card-inner">
+				<div class="flip-card-front">
+				  <img src="aven.jpg" alt="Avatar" style="width:1300px;height:360px; z-index: 0;">
+				</div>
+				<div class="flip-card-back">
+				  <h1>Avengers: Endgame (2019)</h1> 
+				  <h2>Overview<h2>
+					<h5>After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.</h5> 
+				  <p>We love that guy</p>
+				  <br><br>
+				  <h2>A review by Per Gunnar Jonsson</h2>
+				  <h5>hese kind of movies are among the few movies that I can be bothered to go to an actual theater to watch nowadays. For most movies I just wait until they come out on disk (preferably Ultra HD Blu-ray if it’s available) and watch them on my home theater rig. So this weekend me and the kids went to the theater to watch Avengers: Endgame.</h5>
+				</div>
+			  </div>
+			</div>	
+		</section>
+		
+		<section class="photos">
+			
+			<div class="flip-card">
+			  <div class="flip-card-inner">
+				<div class="flip-card-front">
+				  <img src="spy.jpg" alt="Avatar" style="width:300px;height:180px;">
+				</div>
+				<div class="flip-card-back">
+				   <h1>Spider-Man: Far from Home</h1> 
+				  <p>Architect & Engineer</p> 
+				  <p>Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter ....</p>
+				</div>
+			  </div>
+			</div>
+			
+			<div class="flip-card">
+			  <div class="flip-card-inner">
+				<div class="flip-card-front">
+				  <img src="aven.jpg" alt="Avatar" style="width:300px;height:180px;">
+				</div>
+				<div class="flip-card-back">
+				  <h1>Avengers 4</h1> 
+				  <p>April 24, 2019</p> 
+				  <h5>After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos.</>
+				</div>
+			  </div>
+			</div>	
+			
+			<div class="flip-card">
+			  <div class="flip-card-inner">
+				<div class="flip-card-front">
+				  <img src="pika.jpg" alt="Avatar" style="width:300px;height:180px;">
+				</div>
+				<div class="flip-card-back">
+				  <h2>Detective Pikachu</h2> 
+				  <h4>May 3, 2019</h4> 
+				  <h5>In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.</h5>
+				</div>
+			  </div>
+			</div>
+			
+			<div class="flip-card">
+			  <div class="flip-card-inner">
+				<div class="flip-card-front">
+				  <img src="shah.jpg" alt="Avatar" style="width:300px;height:180px;">
+				</div>
+				<div class="flip-card-back">
+				  <h1>Shazam!</h1> 
+				  <p>March 23, 2019</p> 
+				  <p>A boy is given the ability to become an adult superhero in times of need with a single magic word.</p>
+				</div>
+			  </div>
+			</div>
+			
+			
+			
+		</section>
+		
+	</header>
+		<script type="text/javascript">
+			var modal = document.getElementsByClassName("modal")[0];
+			function showmodal(){
+				modal.style.top = "250px";
+			}
+			function hidemodal() {
+				modal.style.top = "-300px";
+			}
+		</script>
+	
+	
+	
+	</body>
+	
+</html>
